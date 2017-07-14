@@ -1,21 +1,23 @@
 <template>
   <div id="app">
     <header>
-      <navbar></navbar>
+      <my-menu></my-menu>
     </header>
 
-    <main class="container">  
-      <router-view></router-view>
-    </main>  
+    <transition name="pagina">
+      <main class="container">  
+        <router-view></router-view>
+      </main>  
+    </transition>
   </div>
 </template>
 
 <script>
-import navbar from '@/components/shared/menu/Nav'
+import Nav from '@/components/shared/menu/Nav'
 
 export default {
   components: {
-    navbar
+    'my-menu': Nav
   },
   name: 'app'
 }

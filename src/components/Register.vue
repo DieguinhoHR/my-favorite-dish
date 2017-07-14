@@ -17,14 +17,25 @@
                 <input type="email" class="form-control" id="email">
             </div>        
             <div class="form-group col-sm-7">
-                <button type="submit" class="btn btn-primary">Criar Conta</button>
+               <my-button :title="title" :btnClass="btnClass"></my-button>
             </div>    
         </form>
     </div>
 </template>
 
 <script>
-  export default {
+import Button from '@/components/shared/button/Button'
 
-  }
+export default {
+    components: {
+        'my-button': Button
+    },
+    data() {
+        return  {
+            title: 'Salvar',
+            btnClass: 'btn btn-primary'
+        }
+    }
+}
+
 </script>

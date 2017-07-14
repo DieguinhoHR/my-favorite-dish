@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import navbar from '@/components/shared/Nav'
+import navbar from '@/components/shared/menu/Nav'
 
 export default {
   components: {

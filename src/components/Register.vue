@@ -6,7 +6,7 @@
        <form>
             <div class="form-group col-sm-7">
                 <label for="username">Nome de Usuário:</label>
-                <input type="username" class="form-control" id="username">
+                 <input type="text" class="form-control" id="username">
             </div>
             <div class="form-group col-sm-7">
                 <label for="password">Senha:</label>
@@ -28,7 +28,7 @@ import Button from '@/components/shared/button/Button'
 
 export default {
     components: {
-        'my-button': Button
+        'my-button': Button       
     },
     data() {
         return  {

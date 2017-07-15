@@ -17,23 +17,27 @@
                 <input type="email" class="form-control" id="email">
             </div>        
             <div class="form-group col-sm-7">
-               <my-button :title="title" :btnClass="btnClass"></my-button>
+              <input type="submit" class="btn btn-primary" value="Salvar" @click.prevent="save">
             </div>    
         </form>
     </div>
 </template>
 
 <script>
-import Button from '@/components/shared/button/Button'
-
-export default {
-    components: {
-        'my-button': Button       
-    },
+export default {  
     data() {
         return  {
-            title: 'Salvar',
-            btnClass: 'btn btn-primary'
+            user: {}
+        }
+    },
+    methods: {
+        save () {
+             this.$http
+               .post('user/register', this.user)
+               .then(response =>  {
+                   this.user = response.user.data
+               })
+               .catch(error => response.$http.error)
         }
     }
 }

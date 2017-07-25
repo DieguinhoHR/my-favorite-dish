@@ -36,7 +36,7 @@ export default {
     methods: {
         save () {            
             this.service
-                .save()
+                .save(this.user)
                 .then(() =>  this.user = new User(), err => console.log(err))               
                 
             this.user = new User()   

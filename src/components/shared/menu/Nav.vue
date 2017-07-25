@@ -8,13 +8,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <router-link to="/" class="navbar-brand">My favourite dish</router-link>
+          <router-link :to="{ name: 'home' }" class="navbar-brand">My favourite dish</router-link>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><router-link to="/">Home</router-link></li>
-            <li><router-link to="/register">Cadastre-se</router-link></li>
-            <li><router-link to="/login">Login</router-link></li>
+            <li class="active"><router-link :to="{name: 'home' }">Home</router-link></li>
+            <li><router-link :to="{ name: 'register'}">Cadastre-se</router-link></li>
+            <li><router-link :to="{ name: 'login'}">Login</router-link></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

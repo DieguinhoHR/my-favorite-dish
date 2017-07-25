@@ -6,15 +6,15 @@
        <form>
             <div class="form-group col-sm-7">
                 <label for="username">Nome de Usuário:</label>
-                 <input type="text" class="form-control" id="username">
+                 <input type="text" class="form-control" id="username" v-model="user.username">
             </div>
             <div class="form-group col-sm-7">
                 <label for="password">Senha:</label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" id="password" v-model="user.password">
             </div>
             <div class="form-group col-sm-7">
                 <label for="email">E-mail:</label>
-                <input type="email" class="form-control" id="email">
+                <input type="email" class="form-control" id="email" v-model="user.email">               
             </div>        
             <div class="form-group col-sm-7">
               <input type="submit" class="btn btn-primary" value="Salvar" @click.prevent="save">
@@ -24,21 +24,26 @@
 </template>
 
 <script>
+import User from '../domain/user/User'
+import UserService from '../domain/user/UserService'
+
 export default {  
     data() {
         return  {
-            user: {}
+            user: new User()
         }
     },
     methods: {
-        save () {
-             this.$http
-               .post('user/register', this.user)
-               .then(response =>  {
-                   this.user = response.user.data
-               })
-               .catch(error => response.$http.error)
+        save () {            
+            this.service
+                .save()
+                .then(() =>  this.user = new User(), err => console.log(err))               
+                
+            this.user = new User()   
         }
+    }, 
+    created () {
+        this.service = new UserService(this.$resource)
     }
 }
 

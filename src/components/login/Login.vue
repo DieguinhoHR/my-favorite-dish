@@ -5,14 +5,44 @@
 
        <form autocomplete="off">           
             <div class="form-group col-sm-7">
-              <label for="email">E-mail:</label>
-              <input type="email" class="form-control" id="email" v-model="login.email">               
-            </div>      
-          
-            <div class="form-group col-sm-7">
-              <label for="password">Senha:</label>
-              <input type="password" class="form-control" id="password" v-model="login.password">
+                <label for="email">E-mail:</label>
+                <div :class="{
+                      'form-group': true,
+                      'has-feedback': true,
+                      'has-success': login.email && !errors.has('email'),
+                      'has-error': errors.has('email') }">
+                      <input type="email"
+                             v-model.trim="login.email"
+                             name="email"
+                             id="email"
+                             class="form-control"
+                             maxlength="255"
+                             data-vv-as="E-mail"
+                             data-vv-rules="required|email|max:255"
+                             v-validate>
+                </div>      
+                <span v-show="errors.has('email')" class="alert alert-danger">{{ errors.first('email') }}</span>
             </div>
+
+            <div class="form-group col-sm-7">
+                <label for="password">Senha:</label>
+                   <div :class="{
+                      'form-group': true,
+                      'has-feedback': true,
+                      'has-success': login.password && !errors.has('password'),
+                      'has-error': errors.has('password') }">
+                       <input type="password"
+                              v-model.trim="login.password"
+                              name="password"
+                              id="password"
+                              class="form-control"
+                              maxlength="255"
+                              data-vv-as="Senha"
+                              data-vv-rules="required"
+                              v-validate>
+                   </div>
+                   <span v-show="errors.has('password')" class="alert alert-danger">{{ errors.first('password') }}</span>
+            </div>            
 
             <div class="form-group col-sm-7">
               <input type="submit" class="btn btn-primary" value="Logar" @click.prevent="loginValidate">

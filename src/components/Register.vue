@@ -88,9 +88,9 @@ export default {
                     if (success) {                       
                         this.service
                             .save(this.user)
-                            .then(() =>  this.user = new User(), err => console.log(err))               
+                            .then(() =>  this.user = new User(), err => console.log(err))
 
-                        this.user = new User()   
+                            this.$router.push({ name: 'login' })
                     }
                 })                                
         }

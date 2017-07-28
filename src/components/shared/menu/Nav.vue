@@ -13,7 +13,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="active"><router-link :to="{name: 'home' }">Home</router-link></li>
-            <li><router-link :to="{ name: 'register'}">Cadastre-se</router-link></li>
+            <li><router-link :to="{ name: 'user.create'}">Cadastre-se</router-link></li>
             <li><router-link :to="{ name: 'login'}">Login</router-link></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -21,8 +21,3 @@
     </nav>
 </template>
 
-<script>
-  export default {
-      
-  }
-</script>

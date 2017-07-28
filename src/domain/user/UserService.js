@@ -1,6 +1,6 @@
 class UserService {
     constructor(resource) {
-        this._resource = resource('api/user/register{/id}')
+        this._resource = resource('api/user{/id}')
     }
 
     list() {
@@ -12,6 +12,12 @@ class UserService {
     save(user) {
         return this._resource
             .save(user)
+    }
+
+    show(id) {
+        return this._resource
+            .query({ id })
+            .then(res => res.json())
     }
 
     delete(id) {

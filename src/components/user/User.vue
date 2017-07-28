@@ -71,8 +71,8 @@
 </template>
 
 <script>
-import User from '../domain/user/User'
-import UserService from '../domain/user/UserService'
+import User from '@/domain/user/User'
+import UserService from '@/domain/user/UserService'
 
 export default {  
     data() {
@@ -87,13 +87,11 @@ export default {
                 .then(success => {
                     if (success) {                       
                         this.service
-                            .save(this.user)
-                            .then(() =>  this.user = new User(), err => console.log(err))
+                          .save(this.user)
+                          .then(() =>  this.user = new User(), err =>  flash('Não possivel se cadastrar ' + err))
 
-                            flash('Usuário cadastrado com sucesso')
-                                
-                            this.$router.push({ name: 'login' })
-
+                           flash('Usuário cadastrado com sucesso')                                
+                           this.$router.push({ name: 'login' })
                     }
                 })                                
         }

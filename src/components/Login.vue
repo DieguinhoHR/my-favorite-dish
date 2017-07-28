@@ -52,12 +52,13 @@
 </template>
 
 <script>
-  import Login from '../../domain/login/Login'
-
   export default {
     data() {
         return {
-          login: new Login()            
+          login: {
+            email: '',
+            password: ''
+          }     
         }
     },
     methods: {
@@ -70,9 +71,9 @@
             password: this.login.password
           }
           this.$http.post('http://localhost:8000/oauth/token', data)
-                    .then(response => {
-                      console.log(response) 
-                    })
+                    .then(() => {
+                      this.$router.push({ name: 'user.show' })
+                    }, (err) => flash('Usuário ou senha inválido', 'danger'))
         }
     }   
   }

@@ -45,7 +45,7 @@
             </div>            
 
             <div class="form-group col-sm-7">
-              <input type="submit" class="btn btn-primary" value="Logar" @click.prevent="loginValidate">
+              <input type="submit" class="btn btn-success" value="Logar" @click.prevent="loginValidate">
             </div>    
         </form>
     </div>

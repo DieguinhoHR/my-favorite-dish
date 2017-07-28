@@ -79,7 +79,7 @@ export default {
         return  {
             user: new User()
         }
-    },
+    },   
     methods: {
         save () {      
             this.$validator
@@ -90,7 +90,10 @@ export default {
                             .save(this.user)
                             .then(() =>  this.user = new User(), err => console.log(err))
 
+                            flash('Usuário cadastrado com sucesso')
+                                
                             this.$router.push({ name: 'login' })
+
                     }
                 })                                
         }

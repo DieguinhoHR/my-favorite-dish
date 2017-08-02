@@ -65,14 +65,15 @@
         loginValidate() {
           let data = {
             client_id: 2,
-            client_secret: 'BmstZJ3SUspixo6GtdJNmkXyfD6Edr6AobRwOAT6',
+            client_secret: 'TIwRQcDUKrWWFG5Gpx0kLE8dHubfhtgRrEjFMayh',
             grant_type: 'password',
             username: this.login.email,
             password: this.login.password
           }
           this.$http.post('http://localhost:8000/oauth/token', data)
-                    .then(() => {
-                      this.$router.push({ name: 'user.show' })
+                    .then(response => {
+                      this.$auth.setToken(response.body.access_token, response.body.expires_in + Date.now())
+                      this.$router.push('/users')                      
                     }, (err) => flash('Usuário ou senha inválido', 'danger'))
         }
     }   

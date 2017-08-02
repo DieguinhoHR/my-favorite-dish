@@ -88,7 +88,7 @@ export default {
                     if (success) {                       
                         this.service
                           .save(this.user)
-                          .then(() =>  this.user = new User(), err =>  flash('Não possivel se cadastrar ' + err))
+                          .then(() =>  this.user = new User(), err =>  flash('Não possivel se cadastrar', 'danger'))
 
                            flash('Usuário cadastrado com sucesso')                                
                            this.$router.push({ name: 'login' })

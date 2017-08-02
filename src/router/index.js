@@ -1,13 +1,16 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import Home from '@/components/home/Home'
 import Login from '@/components/Login'
 import User from '@/components/user/User'
+import Users from '@/components/user/Index'
 import UserShow from '@/components/user/Show'
+import Auth from '@/packages/auth/Auth.js'
 
-Vue.use(Router)
+Vue.use(VueRouter)
+Vue.use(Auth)
 
-export default new Router({
+const router = new VueRouter({
     mode: 'history',
     routes: [{
             path: '/',
@@ -22,10 +25,22 @@ export default new Router({
             component: User
         },
         {
+            path: '/users',
+            title: 'Usuários',
+            name: 'user.index',
+            component: Users,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
             path: '/user/:id',
             title: 'Usuário',
             name: 'user.show',
-            component: UserShow
+            component: UserShow,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/login',
@@ -39,3 +54,22 @@ export default new Router({
         }
     ]
 })
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (!Vue.auth.isAuthenticated()) {
+            next({
+                path: '/login',
+                query: { redirect: to.fullPath }
+
+            })
+        } else {
+            next()
+        }
+    } else {
+        next()
+    }
+})
+
+
+export default router

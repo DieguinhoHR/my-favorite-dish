@@ -12,9 +12,9 @@ Vue.http.options.root = 'http://localhost:8000'
 Vue.config.productionTip = false
 
 Vue.use(VeeValidate, {
-    locale: 'pt_BR',
+    locale: 'pt_br',
     dictionary: {
-        pt_BR: {
+        pt_br: {
             messages: msg
         }
     }

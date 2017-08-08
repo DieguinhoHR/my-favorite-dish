@@ -1,4 +1,8 @@
+import router from '@/router/index'
+
 export default function(Vue) {
+    let authenticatedUser = {}
+
     Vue.auth = {
         setToken(token, expiration) {
             localStorage.setItem('token', token)
@@ -13,12 +17,10 @@ export default function(Vue) {
                 return null
             }
             if (Date.now() > parseInt(expiration)) {
-                console.log(Date.now())
                 this.destroyToken()
                 return null
-            } else {
-                return token
             }
+            return token
         },
 
         destroyToken() {
@@ -26,11 +28,24 @@ export default function(Vue) {
             localStorage.removeItem('expiration')
         },
 
+        logout() {
+            this.destroyToken()
+            return router.push({ name: 'login' })
+        },
+
         isAuthenticated() {
             if (this.getToken()) {
                 return true
             }
             return false
+        },
+
+        setAuthenticatedUser(data) {
+            authenticatedUser = data
+        },
+
+        getAuthenticatedUser() {
+            return authenticatedUser
         }
     }
 

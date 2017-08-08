@@ -14,6 +14,11 @@ class UserService {
             .save(user)
     }
 
+    update(id, user) {
+        return this._resource
+            .update({ id: id }, user)
+    }
+
     show(id) {
         return this._resource
             .query({ id })

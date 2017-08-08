@@ -5,6 +5,7 @@ import Login from '@/components/Login'
 import User from '@/components/user/User'
 import Users from '@/components/user/Index'
 import UserShow from '@/components/user/Show'
+import UserEdit from '@/components/user/Edit'
 import Auth from '@/packages/auth/Auth.js'
 
 Vue.use(VueRouter)
@@ -43,6 +44,15 @@ const router = new VueRouter({
             }
         },
         {
+            path: '/user/:id/edit',
+            title: 'Usuário Edit',
+            name: 'user.edit',
+            component: UserEdit,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
             path: '/login',
             title: 'Login',
             name: 'login',
@@ -61,7 +71,6 @@ router.beforeEach((to, from, next) => {
             next({
                 path: '/login',
                 query: { redirect: to.fullPath }
-
             })
         } else {
             next()
@@ -70,6 +79,5 @@ router.beforeEach((to, from, next) => {
         next()
     }
 })
-
 
 export default router

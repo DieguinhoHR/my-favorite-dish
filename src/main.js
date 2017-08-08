@@ -4,6 +4,7 @@ import router from './router'
 import VueResource from 'vue-resource'
 import VeeValidate from 'vee-validate'
 import msg from './pt_BR'
+import store from './store/store'
 
 Vue.use(VueResource)
 
@@ -28,6 +29,7 @@ window.flash = function(message, level = 'success') {
 
 /* eslint-disable no-new */
 new Vue({
+    store,
     el: '#app',
     router,
     template: '<App/>',

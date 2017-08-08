@@ -53,6 +53,7 @@
 
 <script>
   export default {
+    name: 'Login',
     data() {
         return {
           login: {
@@ -65,7 +66,7 @@
         loginValidate() {
           let data = {
             client_id: 2,
-            client_secret: 'TIwRQcDUKrWWFG5Gpx0kLE8dHubfhtgRrEjFMayh',
+            client_secret: '67lTf5JHrLp5qUn0wxZQU8Pi81xicVrr4izhs17s',
             grant_type: 'password',
             username: this.login.email,
             password: this.login.password
@@ -73,8 +74,9 @@
           this.$http.post('http://localhost:8000/oauth/token', data)
                     .then(response => {
                       this.$auth.setToken(response.body.access_token, response.body.expires_in + Date.now())
-                      this.$router.push('/users')                      
-                    }, (err) => flash('Usuário ou senha inválido', 'danger'))
+
+                      this.$router.push('users')                      
+                    }, err => flash('Usuário ou senha inválido', 'danger'))
         }
     }   
   }

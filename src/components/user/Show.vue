@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ users }}
     <h1>{{ user.email }}</h1>
     <button class="btn btn-danger" @click.prevent="onDelete(user)">
       Deletar Perfil
@@ -31,7 +30,7 @@
           .delete(user.id)
           .then(res => this.user = res)
           .then(flash('Registro excluido com sucesso'))
-          .then(this.$router.push({ name:'user.create' }))          
+          .then(this.$router.push({ name:'user.index' }))          
       }
     }
   }

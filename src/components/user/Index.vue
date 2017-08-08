@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <h1>Usuários</h1>
+
     <div class="input-group">
       <input type="text" 
              class="form-control" 
@@ -12,21 +14,27 @@
       <a href="#" class="alert-link">Nenhum Registro Encontrado!</a>
     </div>
 
-    <table class="table" v-for="user in usersWithFilter">
+    <table class="table">
       <thead class="thead-inverse">
         <tr>
           <th>ID</th>
           <th>Nome de usuário</th>
-           <th>E-mail</th>  
+          <th>E-mail</th>  
           <th>Data de Criação</th>             
+          
         </tr>
       </thead>
-      <tbody>
+      <tbody  v-for="user in usersWithFilter">
         <tr>
-          <th scope="row">{{ user.id }}</th>
+          <td scope="row"><router-link :to="{ name: 'user.show', params: { id: user.id }}">{{ user.id }}</router-link></td>          
           <td>{{ user.username }}</td>
           <td>{{ user.email }}</td>    
           <td>{{ dateFormat(user.created_at) }}</td>      
+          <td>
+            <router-link :to="{ name: 'user.edit', params: {id: user.id}}">
+              <input type="button" class="btn btn-primary" value="Atualizar">
+            </router-link>
+          </td>
         </tr>   
       </tbody>
     </table>
@@ -71,10 +79,7 @@ export default {
   methods: {
     dateFormat (date) {
       return Date.dateFormat(date)
-    }, 
-    findByAnEmail() {
-      console.log('Bah')
-    }
+    }  
   } 
 }
 </script>
